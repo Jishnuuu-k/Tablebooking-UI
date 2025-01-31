@@ -1,0 +1,117 @@
+.banner-container {
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner-slider {
+  display: flex;
+  height: 100%;
+  width: 100%; /* Increased width to accommodate duplicated slides */
+  animation: slide 14s infinite linear; /* Adjusted duration for smooth loop */
+}
+
+.banner-slide {
+  height: 100%;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.banner-slide img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  16.66% {
+    transform: translateX(-100%); /* Adjusted percentages for smoother loop */
+  }
+  33.33% {
+    transform: translateX(-200%);
+  }
+  50% {
+    transform: translateX(-300%);
+  }
+  66.66% {
+    transform: translateX(-400%);
+  }
+  83.33% {
+    transform: translateX(-500%);
+  }
+  100% {
+    transform: translateX(-600%); /* Ensures smooth infinite looping */
+  }
+}
+
+
+.Divfor-restaurant{
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.Divfor-restaurant h2{
+  font-size: 30px;
+}
+.Banner-cards {
+  height: 215px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around; 
+  align-items: center;
+  overflow-x: auto; 
+  overflow-y: hidden;
+  gap: 10px;
+}
+.Banner-cards::-webkit-scrollbar {
+  display: none; 
+}
+
+.Cards {
+  height: 200px;
+  width: 400px;
+  border-radius: 5px;
+  flex: 0 0 auto; 
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.Binside-cards{
+  height: 180px;
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+}
+.Binside-cards h3{
+  font-size: 20px;
+}
+.Binside-cards .Restaurant-details{
+  height: 130px;
+  width: 100%;
+}
+.Binside-cards .View-btn{
+  height: 50px;
+  width: 100%;
+}
+.View-btn .View{
+  height: 50px;
+  width: 100%;
+  border: 0;
+  color: white;
+  background-color: #ff5722;
+}
+.ShowAll-btn{
+  height: 30px;
+  width: 200px;
+}
+.ShowAll-btn .Showall{
+  height: 30px;
+  width: 200px;
+}
