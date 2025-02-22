@@ -1,8 +1,12 @@
 import React from 'react'
-
+import NavBar from '../Component/NavBar/NavBar'
+import Userreg from '../Component/Userreg/Userreg'
 function UserregisterPage() {
   return (
-    <div>UserregisterPage</div>
+    <div>
+      <NavBar/>
+      <Userreg/>
+    </div>
   )
 }
 

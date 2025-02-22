@@ -8,7 +8,7 @@ function NavBar() {
       <div className="navbar-logo">BOOK-MY-TABLE</div>
 
       <ul className="navbar-links">
-        <li> <Link to="/">Home</Link> </li>
+        <li> <Link to="">Home</Link> </li>
         <li><a href="/my-bookings">My Bookings</a></li>
         <li><Link to="/restaurant">Restaurant</Link></li>
         <li><Link to="/shoplogin">Register as Shop Owner</Link></li>

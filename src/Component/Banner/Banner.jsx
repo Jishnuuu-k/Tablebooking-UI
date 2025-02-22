@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+  import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import './banner.css';
 import Axios from '../../Axios/Axios';
@@ -62,7 +62,9 @@ function Banner() {
                   <p>Id: {obj.Id}</p>
                 </div>
                 <div className="View-btn">
-                  <button className="View">Click to view</button>
+                  <Link to="/restaurant">
+                    <button className="View">Click to view</button>
+                  </Link>
                 </div>
               </div>
             </div>
