@@ -1,157 +1,181 @@
-/* shoplogin.css */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Video Background */
-.login-container video {
-  position: absolute;
-  top: 0;
-  left: 0;
+.shop-login-wrapper {
+  min-height: 100vh;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1; /* Ensure it stays behind the content */
-}
-
-/* Overlay to darken the background for better visibility */
-.login-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.login-content {
-  text-align: center;
-  position: absolute;
-  top: 25px;
-  color: white;
-}
-
-.login-content h1 {
-  font-size: 2.5rem;
-  font-weight: 600;
-}
-
-.login-content p {
-  font-size: 1.2rem;
-  font-weight: 300;
-  opacity: 0.9;
-}
-
-.login-card {
   background: white;
-  padding: 2rem;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  width: 350px;
-  text-align: center;
-  position: absolute;
-  animation: fadeIn 0.8s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
-h2 {
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.input-group {
-  margin-bottom: 1rem;
-  text-align: left;
-}
-
-.input-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 14px;
-  color: #555;
-}
-
-.input-group input {
+.shop-login-container {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.options {
+  min-height: 100vh;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  font-size: 14px;
-  margin-bottom: 1rem;
+  justify-content: center;
+  padding: 20px;
 }
 
-.options a {
+.shop-login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(255, 69, 0, 0.15);
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 10px;
+  color: orangered;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.subtitle {
+  text-align: center;
+  color: orangered;
+  font-size: 20px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: orangered;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #ffd1c2;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: white;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.form-group input:hover {
+  border-color: #ff6347;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: orangered;
+  box-shadow: 0 0 0 1px orangered;
+}
+
+.forgot-password {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.forgot-password a {
+  color: orangered;
   text-decoration: none;
-  color: #007bff;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+  color: #ff3300;
+  text-decoration: underline;
 }
 
 .login-btn {
   width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  border: none;
+  padding: 12px;
+  background: orangered;
   color: white;
+  border: none;
+  border-radius: 8px;
   font-size: 16px;
-  border-radius: 5px;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  margin-top: 10px;
 }
 
 .login-btn:hover {
-  background-color: #0056b3;
+  background: #ff3300;
+  transform: translateY(-1px);
 }
 
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-bottom: 1rem;
+.login-btn:active {
+  transform: translateY(1px);
 }
 
-/* Fade-in Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Add styles for the Register Now link */
 .register-link {
-  margin-top: 1rem;
-  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
 }
 
 .register-link a {
+  color: orangered;
   text-decoration: none;
-  color: #007bff;
   font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .register-link a:hover {
-  color: #0056b3;
+  color: #ff3300;
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  0% { 
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  100% { 
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Ensure proper stacking context */
+input, button, a {
+  position: relative;
+  z-index: 2;
+}
+
+/* Improve focus visibility for accessibility */
+input:focus, button:focus, a:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px orangered;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .shop-login-box {
+      padding: 20px;
+  }
+
+  .form-group input {
+      padding: 10px 12px;
+  }
 }

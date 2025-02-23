@@ -3,69 +3,72 @@ import { Link } from "react-router-dom";
 import "./shoplogin.css";
 
 function Shoplogin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!email || !password) {
-      setError("Please fill in both fields.");
-      return;
-    }
-    console.log("Logging in with:", { email, password });
-    setError("");
+    // Handle login logic here
+    console.log('Form submitted:', formData);
   };
 
   return (
-    <div className="login-container">
-      {/* Background Video */}
-      <video autoPlay loop muted>
-        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+    <div className="shop-login-wrapper">
+      <div className="shop-login-container">
+        <div className="shop-login-box">
+          <h1 className="logo">BOOK MY TABLE</h1>
+          <h2 className="subtitle">Restaurant Login</h2>
+          
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="Enter your restaurant email"
+              />
+            </div>
 
-      {/* Title & Tagline */}
-      <div className="login-content">
-        <h1>BOOKMYTABLE</h1>
-        <p>Book and Manage Your Tables Easily!</p>
-      </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                placeholder="Enter your password"
+              />
+            </div>
 
-      {/* Login Box */}
-      <div className="login-card">
-        <h2>Shop Owner Login</h2>
-        {error && <p className="error-message">{error}</p>}
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <label>Email</label>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="input-group">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="options">
-            <label>
-              <input type="checkbox" /> Remember me
-            </label>
-            <a href="#">Forgot Password?</a>
-          </div>
-          <button type="submit" className="login-btn">Login</button>
-        </form>
+            <div className="forgot-password">
+              <Link to="/forgot-password">Forgot Password?</Link>
+            </div>
 
-        {/* Register Now Link */}
-        <div className="register-link">
-          <p>Not registered yet? <Link to="/shopregisterion">Register Now</Link></p>
+            <button type="submit" className="login-btn">
+              Login
+            </button>
+
+            <div className="register-link">
+              Don't have an account?{' '}
+              <Link to="/shopregisterion">Register Your Restaurant</Link>
+            </div>
+          </form>
         </div>
       </div>
     </div>

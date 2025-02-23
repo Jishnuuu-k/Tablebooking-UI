@@ -1,44 +1,179 @@
-.shopreg-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.shop-register-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  background: white;
+}
+
+.shop-register-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.shop-register-box {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(255, 69, 0, 0.15);
+  width: 100%;
+  max-width: 700px;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 10px;
+  color: orangered;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.subtitle {
+  text-align: center;
+  color: orangered;
+  font-size: 20px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  flex: 1;
+  position: relative;
+}
+
+.form-group.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: orangered;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #ffd1c2;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: white;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.form-group input:hover {
+  border-color: #ff6347;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: orangered;
+  box-shadow: 0 0 0 1px orangered;
+}
+
+.register-btn {
+  width: 100%;
+  padding: 12px;
+  background: orangered;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.register-btn:hover {
+  background: #ff3300;
+  transform: translateY(-1px);
+}
+
+.register-btn:active {
+  transform: translateY(1px);
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+}
+
+.login-link a {
+  color: orangered;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.login-link a:hover {
+  color: #ff3300;
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  0% { 
+      opacity: 0;
+      transform: translateY(-10px);
   }
-  
-  .shopreg-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
+  100% { 
+      opacity: 1;
+      transform: translateY(0);
   }
-  
+}
+
+/* Ensure proper stacking context */
+input, button, a {
+  position: relative;
+  z-index: 2;
+}
+
+/* Improve focus visibility for accessibility */
+input:focus, button:focus, a:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px orangered;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .shop-register-box {
+      padding: 20px;
+  }
+
+  .form-row {
+      flex-direction: column;
+      gap: 0;
+  }
+
   .form-group {
-    margin-bottom: 15px;
+      margin-bottom: 20px;
   }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
+
   .form-group input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+      padding: 10px 12px;
   }
-  
-  .submit-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .submit-btn:hover {
-    background-color: #218838;
-  }
+}

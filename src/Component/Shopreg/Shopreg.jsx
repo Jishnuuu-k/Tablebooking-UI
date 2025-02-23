@@ -1,120 +1,122 @@
 import React, { useState } from 'react';
 import './shopreg.css';
-import axios from 'axios'; // For making API calls
+import axios from 'axios';
 
 function Shopreg() {
-  const [shopName, setShopName] = useState('');
-  const [shopId, setShopId] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [message, setMessage] = useState(''); // For displaying messages
-  const [isRegistered, setIsRegistered] = useState(false); // To track registration status
+  const [formData, setFormData] = useState({
+    shopName: '',
+    shopId: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      setMessage("Passwords do not match!");
-      return;
-    }
-
     try {
-      // Send registration data to the backend
-      const response = await axios.post('/api/register', {
-        shopName,
-        shopId,
-        email,
-        password,
-      });
-
-      if (response.data.success) {
-        setMessage('Registration successful! Please check your email to verify your account.');
-        setIsRegistered(true);
-      } else {
-        setMessage(response.data.message || 'Registration failed. Please try again.');
-      }
+      // Add your API endpoint here
+      const response = await axios.post('/api/shop/register', formData);
+      console.log('Registration successful:', response.data);
     } catch (error) {
-      setMessage('An error occurred. Please try again later.');
-      console.error(error);
-    }
-  };
-
-  const handleResendVerification = async () => {
-    try {
-      const response = await axios.post('/api/resend-verification', { email });
-      setMessage(response.data.message || 'Verification email sent!');
-    } catch (error) {
-      setMessage('Failed to resend verification email. Please try again.');
-      console.error(error);
+      console.error('Registration failed:', error);
     }
   };
 
   return (
-    <div className="shopreg-container">
-      <h2>Shop Registration</h2>
-      {!isRegistered ? (
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="shopName">Shop Name</label>
-            <input
-              type="text"
-              id="shopName"
-              value={shopName}
-              onChange={(e) => setShopName(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="shopId">Shop ID</label>
-            <input
-              type="text"
-              id="shopId"
-              value={shopId}
-              onChange={(e) => setShopId(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Re-enter Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit" className="submit-btn">Register</button>
-        </form>
-      ) : (
-        <div>
-          <p>{message}</p>
-          <button onClick={handleResendVerification} className="resend-btn">
-            Resend Verification Email
-          </button>
+    <div className="shop-register-wrapper">
+      <div className="shop-register-container">
+        <div className="shop-register-box">
+          <h1 className="logo">BOOK MY TABLE</h1>
+          <h2 className="subtitle">Restaurant Registration</h2>
+          
+          <form onSubmit={handleSubmit}>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="shopName">Shop Name</label>
+                <input
+                  type="text"
+                  id="shopName"
+                  name="shopName"
+                  value={formData.shopName}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter your restaurant name"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="shopId">Shop ID</label>
+                <input
+                  type="text"
+                  id="shopId"
+                  name="shopId"
+                  value={formData.shopId}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter your shop ID"
+                />
+              </div>
+            </div>
+
+            <div className="form-group full-width">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="Enter your restaurant email"
+              />
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter your password"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="confirmPassword">Re-enter Password</label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  required
+                  placeholder="Confirm your password"
+                />
+              </div>
+            </div>
+
+            <button type="submit" className="register-btn">
+              Register Restaurant
+            </button>
+
+            <div className="login-link">
+              Already registered? <a href="/shoplogin">Login Here</a>
+            </div>
+          </form>
         </div>
-      )}
-      {message && !isRegistered && <p>{message}</p>}
+      </div>
     </div>
   );
 }
