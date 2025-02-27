@@ -141,7 +141,7 @@ function Restaurant() {
                   type="number"
                   name="seats"
                   className="input"
-                  placeholder="Enter the number of seats"
+                  placeholder="Enter the seat count"
                   onChange={(e) => handleInputChange(e, restaurant.Id)}
                 />
               </div>

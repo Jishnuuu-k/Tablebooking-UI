@@ -125,15 +125,15 @@
     text-decoration: underline;
 }
 
-@keyframes fadeIn {
-    0% { 
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    100% { 
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Error Styling */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.error-input {
+    border-color: red !important;
 }
 
 /* Responsive styles */
@@ -144,14 +144,5 @@
 
     .form-row {
         flex-direction: column;
-        gap: 0;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    .form-group input {
-        padding: 10px 12px;
     }
 }

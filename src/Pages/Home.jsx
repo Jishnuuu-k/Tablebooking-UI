@@ -1,6 +1,7 @@
 import React from 'react'
 import NavBar from '../Component/NavBar/NavBar'
 import Banner from '../Component/Banner/Banner'
+import Footer from '../Component/Footer/Footer'
 
 
 function Home() {
@@ -8,6 +9,7 @@ function Home() {
     <div>
         <NavBar/>
         <Banner/>
+        <Footer/>
     </div>
   )
 }

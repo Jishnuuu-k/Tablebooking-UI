@@ -14,13 +14,13 @@ function Userreg() {
     confirmPassword: "",
   });
 
-  const [usernameError, setUsernameError] = useState(""); // State for username error
-  const [emailError, setEmailError] = useState(""); // State for email error
+  const [usernameError, setUsernameError] = useState(""); 
+  const [emailError, setEmailError] = useState("");
 
   const handleInput = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
 
-    // Clear error if user starts typing
+    // Clear error message when user starts typing
     if (event.target.name === "username") {
       setUsernameError("");
     }
@@ -39,21 +39,13 @@ function Userreg() {
 
     try {
       const response = await Axios.post("/Users/auth/userRegister", form);
-      console.log(response.data); // Debugging: Check response data
+      console.log(response.data);
 
       if (!response.data.success) {
         if (response.data.message === "Username is already taken") {
-          setUsernameError("Username already taken");
-          setForm((prevForm) => ({
-            ...prevForm,
-            username: "", // Clear username field when taken
-          }));
+          setUsernameError("Username is already taken");
         } else if (response.data.message === "Email already registered. Please login.") {
-          setEmailError("Email already registered, Please Login");
-          setForm((prevForm) => ({
-            ...prevForm,
-            email: "", // Clear email field when taken
-          }));
+          setEmailError("Email already registered. Please login.");
         }
       } else {
         alert("Registration successful!");
@@ -93,12 +85,10 @@ function Userreg() {
                   name="username"
                   value={form.username}
                   required
-                  placeholder={usernameError || "Choose a username"}
-                  style={{
-                    borderColor: usernameError ? "red" : "",
-                    color: usernameError ? "red" : "",
-                  }}
+                  placeholder="Choose a username"
+                  className={usernameError ? "error-input" : ""}
                 />
+                {usernameError && <p className="error-message">{usernameError}</p>}
               </div>
             </div>
 
@@ -112,12 +102,10 @@ function Userreg() {
                   name="email"
                   value={form.email}
                   required
-                  placeholder={emailError || "Enter your email"}
-                  style={{
-                    borderColor: emailError ? "red" : "",
-                    color: emailError ? "red" : "",
-                  }}
+                  placeholder="Enter your email"
+                  className={emailError ? "error-input" : ""}
                 />
+                {emailError && <p className="error-message">{emailError}</p>}
               </div>
 
               <div className="form-group">
