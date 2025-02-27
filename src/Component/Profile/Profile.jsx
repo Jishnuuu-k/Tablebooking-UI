@@ -1,27 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './profile.css'
+import './profile.css';
+
 function Profile() {
   const navigate = useNavigate();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [originalData, setOriginalData] = useState(null); // Store original user data
   const [userData, setUserData] = useState({
-    name: "John Doe",
-    username: "johndoe123",
-    email: "john@example.com",
-    mobile: "+1 234 567 8900",
-    place: "New York",
-    joinedDate: "January 2024",
-    totalBookings: 12,
-    favoriteRestaurants: 5,
+    name: "",
+    username: "",
+    email: "",
+    mobile: "",
+    place: "",
+    joinedDate: "",
+    totalBookings: 0,
+    favoriteRestaurants: 0,
     profilePic: ""
   });
-  
-  const [isEditing, setIsEditing] = useState(false);
 
-  const handleEdit = () => setIsEditing(true);
+  // ✅ Fetch user data once on mount
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUserData(parsedUser);
+        setOriginalData(parsedUser); // Store original data
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+      }
+    }
+  }, []);
+
+  const handleEdit = () => {
+    setIsEditing(true);
+    setOriginalData(userData); // Save original state before editing
+  };
+
   const handleSave = () => {
     setIsEditing(false);
-    console.log('Saving user data:', userData);
+    localStorage.setItem("user", JSON.stringify(userData)); // ✅ Save updated data
   };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+    setUserData(originalData); // Restore original data on cancel
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData(prev => ({ ...prev, [name]: value }));
@@ -38,14 +64,13 @@ function Profile() {
     }
   };
 
-  const navigationOptions = [
-    { title: 'Booking History', path: '/bookinghistory', icon: '📅' },
-    { title: 'Favorite Restaurants', path: '/favorites', icon: '⭐' },
-    { title: 'Active Reservations', path: '/active-reservations', icon: '🕒' },
-    { title: 'Payment Methods', path: '/payment-methods', icon: '💳' },
-    { title: 'Reviews & Ratings', path: '/reviews', icon: '⭐' },
-    { title: 'Notifications Settings', path: '/notifications', icon: '🔔' }
-  ];
+  const handleLogout = () => setShowLogoutModal(true);
+  
+  const confirmLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("userToken");
+    navigate("/userlogin");
+  };
 
   return (
     <div className="profile-wrapper">
@@ -64,13 +89,14 @@ function Profile() {
                 ) : (
                   userData.name.charAt(0).toUpperCase()
                 )}
+                {isEditing && <input type="file" onChange={handleFileChange} />}
               </label>
               <div className="user-title">
                 <h2>{userData.name}</h2>
                 <p>@{userData.username}</p>
               </div>
             </div>
-            
+
             <div className="stats-section">
               <div className="stat-item">
                 <span className="stat-number">{userData.totalBookings}</span>
@@ -111,27 +137,37 @@ function Profile() {
           <div className="profile-section navigation-options">
             <h3>Quick Actions</h3>
             <div className="options-grid">
-              {navigationOptions.map((option, index) => (
-                <button
-                  key={index}
-                  className="nav-option"
-                  onClick={() => navigate(option.path)}
-                >
-                  <span className="option-icon">{option.icon}</span>
-                  <span className="option-title">{option.title}</span>
-                </button>
-              ))}
+              <button className="nav-option">📅 Bookings</button>
+              <button className="nav-option">❤️ Favorites</button>
+              <button className="nav-option">⭐ Reviews</button>
+              <button className="nav-option">🕒 Active Reservations</button>
+            </div>
+            <div className="logout-container">
+              <button className="logout-btn" onClick={handleLogout}>Logout</button>
             </div>
           </div>
 
           {isEditing && (
             <div className="action-buttons">
-              <button className="cancel-btn" onClick={() => setIsEditing(false)}>Cancel</button>
+              <button className="cancel-btn edit-cancel" onClick={handleCancelEdit}>Cancel</button>
               <button className="save-btn" onClick={handleSave}>Save Changes</button>
             </div>
           )}
         </div>
       </div>
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutModal && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <h2>Are you sure you want to logout?</h2>
+            <div className="modal-buttons">
+              <button className="modal-cancel-btn" onClick={() => setShowLogoutModal(false)}>Cancel</button>
+              <button className="modal-confirm-btn" onClick={confirmLogout}>Logout</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

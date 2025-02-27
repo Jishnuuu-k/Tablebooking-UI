@@ -147,7 +147,7 @@ body {
   height: 400px;
   width: 400px;
   border-radius: 50%;
-  background-image: url('https://th.bing.com/th/id/OIP.KLlCu60xHj-v2Me100JR_gHaHP?rs=1&pid=ImgDetMain');
+  background-image: url('../../../public/Images/phone.png');
   animation: float 6s ease-in-out infinite;
 }
 
@@ -156,16 +156,16 @@ body {
   height: 200px;
   background-image: url('https://www.pngall.com/wp-content/uploads/2/Meal-PNG-Pic-180x180.png');
   bottom: 15%;
-  animation: float 7s ease-in-out infinite, rotate 15s linear infinite;
+  animation: float 3s ease-in-out infinite;
 }
 
 .floating-knife {
   width: 120px;
   height: 120px;
-  background-image: url('https://www.bing.com/images/search?view=detailV2&ccid=WYvaQBsB&id=2245A96C7B213E09E8315CAFB80631A46B159E96&thid=OIP.WYvaQBsBQXMGHDNRGptDfgHaIk&mediaurl=https%3a%2f%2fpurepng.com%2fpublic%2fuploads%2flarge%2fpurepng.com-grill-chickenfood-meat-chicken-grilled-941524616969gg9vh.png&exph=1272&expw=1100&q=meals+images+png&simid=608001013124896447&FORM=IRPRST&ck=3EDB202D6152063B2483C4DB81E7BA83&selectedIndex=102&itb=1');
+  background-image: url('');
   top: 70%;
   left: 25%;
-  animation: float 8s ease-in-out infinite, rotate-reverse 20s linear infinite;
+  animation: float 8s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -174,15 +174,7 @@ body {
   100% { transform: translateY(0); }
 }
 
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 
-@keyframes rotate-reverse {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
-}
 
 /* Features Section Styles */
 .features-section {

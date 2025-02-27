@@ -67,7 +67,7 @@ function NavBar() {
                   className="dropdown-button"
                 >
                   <span>Account</span>
-                  <span className={`dropdown-arrow ${showAuthMenu ? 'open' : ''}`}>⥁</span>
+                  <span className={`dropdown-arrow ${showAuthMenu ? 'open' : ''}`}>⮩</span>
                 </button>
 
                 {showAuthMenu && (
