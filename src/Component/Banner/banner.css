@@ -144,27 +144,27 @@ body {
 .floating-plate {
   margin-top: 10%;
   margin-left: 65px;
-  height: 400px;
-  width: 400px;
+  height: 500px;
+  width: 500px;
   border-radius: 50%;
   background-image: url('../../../public/Images/phone.png');
   animation: float 6s ease-in-out infinite;
 }
 
 .floating-fork {
-  width: 200px;
-  height: 200px;
-  background-image: url('https://www.pngall.com/wp-content/uploads/2/Meal-PNG-Pic-180x180.png');
-  bottom: 15%;
+  width: 400px;
+  height: 400px;
+  background-image: url('../../../public/Images/tabl-fix.png');
+  margin-top: 350px;
   animation: float 3s ease-in-out infinite;
 }
 
 .floating-knife {
-  width: 120px;
-  height: 120px;
-  background-image: url('');
-  top: 70%;
-  left: 25%;
+  width: 200px;
+  height: 200px;
+  background-image: url('../../../public/Images/ramen.png');
+  top: 55%;
+  left: 45%;
   animation: float 8s ease-in-out infinite;
 }
 
@@ -173,6 +173,7 @@ body {
   50% { transform: translateY(-20px); }
   100% { transform: translateY(0); }
 }
+
 
 
 

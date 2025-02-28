@@ -1,7 +1,8 @@
 .navbar {
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
+  position: sticky;
   top: 0;
   z-index: 1000;
 }
@@ -9,11 +10,11 @@
 .navbar-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 .navbar-main {
-  height: 64px;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,29 +31,52 @@
 
 .brand-text {
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 700;
   color: #ff4500;
+  letter-spacing: -0.5px;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 36px;
 }
 
+/* Fixed nav-link to remove overlay issues */
 .nav-link {
   color: #333;
   text-decoration: none;
+  font-weight: 500;
+  padding: 8px 0;
+  position: relative;
   transition: color 0.3s;
+  z-index: 1; /* Ensure links are clickable */
 }
 
 .nav-link:hover {
   color: #ff4500;
 }
 
-/* Dropdown styles */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ff4500;
+  transition: width 0.3s;
+  z-index: -1; /* Place the underline behind text */
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Dropdown styles - improved to avoid overlay issues */
 .dropdown {
   position: relative;
+  z-index: 100; /* Ensure dropdown is above other elements */
 }
 
 .dropdown-button {
@@ -64,11 +88,16 @@
   color: #333;
   cursor: pointer;
   font-size: 16px;
-  padding: 0;
+  font-weight: 500;
+  padding: 8px 0;
+}
+
+.dropdown-button:hover {
+  color: #ff4500;
 }
 
 .dropdown-arrow {
-  font-size: 19px;
+  font-size: 18px;
   transition: transform 0.3s;
 }
 
@@ -78,55 +107,82 @@
 
 .dropdown-menu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   right: 0;
   background: white;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  width: 200px;
-  margin-top: 8px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 220px;
+  overflow: hidden;
+  animation: fadeIn 0.2s forwards;
+  z-index: 101; /* Ensure dropdown menu is above other elements */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .dropdown-item {
   display: block;
-  padding: 12px 16px;
+  padding: 14px 18px;
   color: #333;
   text-decoration: none;
-  transition: background-color 0.3s;
+  transition: all 0.2s;
 }
 
 .dropdown-item:hover {
   background-color: #fff5f2;
   color: #ff4500;
+  padding-left: 22px;
 }
 
 .dropdown-divider {
   height: 1px;
   background-color: #eee;
-  margin: 8px 0;
+  margin: 6px 0;
 }
 
-/* Profile button styles */
-.profile-button {
+/* Improved profile and logout button styles */
+.profile-button, .logout-button {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 10px;
   background-color: #ff4500;
   color: white;
-  padding: 8px 16px;
+  padding: 10px 18px;
   border-radius: 24px;
+  font-weight: 500;
+  border: none;
   text-decoration: none;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
+  box-shadow: 0 2px 6px rgba(255, 69, 0, 0.2);
+  cursor: pointer;
 }
 
-.profile-button:hover {
-  background-color: #ff3300;
+.profile-button:hover, .logout-button:hover {
+  background-color: #e03e00;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 69, 0, 0.3);
+}
+
+.profile-button:active, .logout-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(255, 69, 0, 0.3);
 }
 
 .profile-icon {
   width: 20px;
   height: 20px;
   fill: currentColor;
+  flex-shrink: 0;
 }
 
 /* Mobile menu button */
@@ -135,7 +191,8 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
+  padding: 10px;
+  z-index: 100; /* Ensure button is clickable */
 }
 
 .hamburger {
@@ -170,19 +227,34 @@
 /* Mobile menu */
 .mobile-menu {
   display: none;
-  padding: 16px 0;
+  padding: 0;
+  border-top: 1px solid #eee;
+  animation: slideDown 0.3s forwards;
+  max-height: 0;
+  overflow: hidden;
+  z-index: 99; /* Ensure mobile menu is above other elements */
+}
+
+@keyframes slideDown {
+  to {
+    max-height: 500px;
+    padding: 12px 0;
+  }
 }
 
 .mobile-link {
   display: block;
-  padding: 12px 16px;
+  padding: 14px 16px;
   color: #333;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: all 0.2s;
+  font-weight: 500;
 }
 
 .mobile-link:hover {
   color: #ff4500;
+  background-color: #fff5f2;
+  padding-left: 22px;
 }
 
 .mobile-divider {
@@ -194,22 +266,10 @@
 .profile-link {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   color: #ff4500;
 }
-.logout-button{
-  height: 37px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background-color: #ff4500;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 24px;
-  border: none;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
+
 /* Media queries */
 @media (max-width: 768px) {
   .nav-menu {
@@ -223,4 +283,108 @@
   .mobile-menu {
     display: block;
   }
+  
+  .navbar-main {
+    height: 64px;
+  }
+  
+  .logout-button {
+    margin: 16px;
+    text-align: center;
+    justify-content: center;
+  }
+}
+/* Logout confirmation modal */
+.logout-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logout-modal {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.logout-modal-content {
+  padding: 24px;
+  text-align: center;
+}
+
+.logout-modal-content h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.logout-modal-content p {
+  margin-bottom: 24px;
+  color: #666;
+}
+
+.logout-modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.cancel-button {
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+  transition: background-color 0.2s;
+}
+
+.cancel-button:hover {
+  background-color: #e0e0e0;
+}
+
+.confirm-button {
+  padding: 10px 20px;
+  background-color: #ff5a5a;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.confirm-button:hover {
+  background-color: #ff3b3b;
+}
+
+/* Add animation for modal */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.logout-modal-overlay {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.logout-modal {
+  animation: slideIn 0.3s ease-out;
 }
