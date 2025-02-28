@@ -177,3 +177,8 @@ input:focus, button:focus, a:focus {
       padding: 10px 12px;
   }
 }
+.message{
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
