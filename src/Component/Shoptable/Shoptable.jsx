@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Shoptable.css'; // You'll need to create this CSS file
+import './shoptable.css'; 
 
 function Shoptable() {
   const [formData, setFormData] = useState({
