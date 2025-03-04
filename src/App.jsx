@@ -9,6 +9,7 @@ import Home from "./Pages/Home";
 import Profilee from "./Pages/Profilee";
 import ProtectedRoute from "./Component/ProtectedRoute.jsx"; 
 import Shoptablee from "./Pages/Shoptablee.jsx";
+import Mybookingss from "./Pages/Mybookingss.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/tableaddsection" element={<Shoptablee />} />
         <Route path="/userlogin" element={<UserloginPage />} />
         <Route path="/userregistration" element={<UserregisterPage />} />
+        <Route path="/mybookings" element={<Mybookingss />} />
         <Route  path="/profile"  element={ <ProtectedRoute> <Profilee /> </ProtectedRoute> }/>
       </Routes>
     </>

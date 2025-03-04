@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import './profile.css';
 
 function Profile() {
@@ -137,10 +137,19 @@ function Profile() {
           <div className="profile-section navigation-options">
             <h3>Quick Actions</h3>
             <div className="options-grid">
-              <button className="nav-option">📅 Bookings</button>
-              <button className="nav-option">❤️ Favorites</button>
-              <button className="nav-option">⭐ Reviews</button>
-              <button className="nav-option">🕒 Active Reservations</button>
+              <Link to="/mybookings" className='Nav-optionslink'>
+                <button className="nav-option">📅 Bookings</button>
+              </Link>
+              <Link to="/favourites" className='Nav-optionslink'>
+                <button className="nav-option">❤️ Favorites</button>
+              </Link>
+              <Link to="/mybookings" className='Nav-optionslink'>
+                <button className="nav-option">⭐ Reviews</button>
+              </Link>
+              <Link to="/activenow" className='Nav-optionslink'>
+                <button className="nav-option">🕒 Active Reservations</button>
+              </Link>
+              
             </div>
             <div className="logout-container">
               <button className="logout-btn" onClick={handleLogout}>Logout</button>

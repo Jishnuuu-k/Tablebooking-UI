@@ -138,7 +138,7 @@ function NavBar() {
                 </>
               ) : (
                 <>
-                  <Link to="/bookings" className="mobile-link">My Bookings</Link>
+                  <Link to="/mybookings" className="mobile-link">My Bookings</Link>
                   <Link to="/dashboard" className="mobile-link">Dashboard</Link>
 
                   {/* ✅ Show profile option only if logged in */}
