@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import './Banner.css';
+import './banner.css';
 
 function Banner() {
   const [isVisible, setIsVisible] = useState(false);
