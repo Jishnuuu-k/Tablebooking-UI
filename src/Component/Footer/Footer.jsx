@@ -124,7 +124,7 @@ function Footer() {
           <Link to="/cookies">Cookies</Link>
           <Link to="/sitemap">Sitemap</Link>
         </div>
-        <p className="attribution">Designed with <span className="heart">♥</span> by speedmonn</p>
+        <p className="attribution">Designed with <span className="heart">♥</span> by <a href="https://www.instagram.com/speedmonn?igsh=MXd6bTJsZWd4YTRpaw==" className='instalink'>speedmon</a></p>
       </div>
     </footer>
   );
